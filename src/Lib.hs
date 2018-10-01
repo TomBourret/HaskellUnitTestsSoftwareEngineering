@@ -28,6 +28,8 @@ lca (Node v tl tr) n1 n2 =
       r = lca tr n1 n2
       root = (v == n1) || (v == n2)
   in case (l, r, root) of
+    (Right a, _, _) -> Right a
+    (_, Right a, _) -> Right a
     (Left True, Left True, _) -> Right v
     (Left True, _, True) -> Right v
     (_, Left True, True) -> Right v
