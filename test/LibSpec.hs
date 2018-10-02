@@ -21,5 +21,8 @@ spec = do
     it "returns 2 for lca 4 9" $ do
       (lca testTree 4 9) `shouldBe` Right 2
 
-    it "returns 2 for lca 4 100" $ do
-      (lca testTree 4 100) `shouldBe` Left False
+    it "returns Left True for lca 4 100" $ do
+      (lca testTree 4 100) `shouldBe` Left True
+
+    it "returns Left False for lca 80 100" $ do
+      (lca testTree 80 100) `shouldBe` Left False
