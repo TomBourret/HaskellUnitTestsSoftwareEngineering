@@ -23,3 +23,12 @@ spec = do
 
     it "returns path1 for lca path1 path1" $ do
       (lca path1 path1) `shouldBe` path1
+
+    it "returns 5 for path_length path1" $ do
+      (path_length path1) `shouldBe` 5
+
+    it "returns 4 for path_length path2" $ do
+      (path_length path2) `shouldBe` 4
+
+    it "returns 0 for path_length empty" $ do
+      (path_length empty) `shouldBe` 0

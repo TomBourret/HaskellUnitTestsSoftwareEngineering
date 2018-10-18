@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc, empty, Path, path1, path2, path3, pathRes1, pathRes2, lca
+    ( someFunc, empty, Path, path1, path2, path3, pathRes1, pathRes2, path_length, path_contains, lca
     ) where
 
 someFunc :: IO ()
@@ -21,6 +21,12 @@ path3 =   [8,7,3,1] :# 4
 
 pathRes1 = [1] :# 1
 pathRes2 = [3,1] :# 2
+
+path_length :: Path -> Int
+path_length empty = 0
+
+path_contains :: Path -> Int -> Bool
+path_contains empty _ = False
 
 lca :: Path -> Path -> Path
 lca (xs0 :# i) (ys0 :# j) = go k (drop (i-k) xs0) (drop (j-k) ys0) where 
