@@ -9,20 +9,17 @@ spec = do
 
   describe "Lca function" $ do
 
-    it "returns Left False for empty tree" $ do
-      (lca emptyTree 1 2) `shouldBe` Left False
+    it "returns empty for empty path in first" $ do
+      (lca empty path1) `shouldBe` empty
 
-    it "returns 1 for lca 1 1" $ do
-      (lca testTree 1 1) `shouldBe` Right 1
+    it "returns empty for empty path in second" $ do
+      (lca path1 empty) `shouldBe` empty
 
-    it "returns 1 for lca 2 3" $ do
-          (lca testTree 2 3) `shouldBe` Right 1
+    it "returns [1] for lca path1 path2" $ do
+      (lca path1 path2) `shouldBe` pathRes1
 
-    it "returns 2 for lca 4 9" $ do
-      (lca testTree 4 9) `shouldBe` Right 2
+    it "returns [3,1] for lca path2 path3" $ do
+      (lca path2 path3) `shouldBe` pathRes2
 
-    it "returns Left True for lca 4 100" $ do
-      (lca testTree 4 100) `shouldBe` Left True
-
-    it "returns Left False for lca 80 100" $ do
-      (lca testTree 80 100) `shouldBe` Left False
+    it "returns path1 for lca path1 path1" $ do
+      (lca path1 path1) `shouldBe` path1
