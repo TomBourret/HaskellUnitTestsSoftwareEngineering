@@ -2,6 +2,8 @@ module Lib
     ( someFunc, empty, Path, path1, path2, path3, graph, pathRes1, pathRes2, path_length, path_contains, lca, lca_graph
     ) where
 
+import GHC.Exts
+
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
@@ -45,3 +47,13 @@ lca (xs0 :# i) (ys0 :# j) = go k (drop (i-k) xs0) (drop (j-k) ys0) where
 
 lca_graph :: [Path] -> Int -> Int -> Path
 lca_graph [] _ _ = empty
+lca_graph graph n1 n2 = last (sortWith path_length (concat (map (select_paths graph n1 n2) graph)))
+
+select_paths :: [Path] -> Int -> Int -> Path -> [Path]
+select_paths graph n1 n2 path = map (apply_LCA path n1 n2) graph
+
+apply_LCA :: Path -> Int -> Int -> Path -> Path
+apply_LCA p n1 n2 path = 
+  if (p /= path && (((p `path_contains` n1) && (path `path_contains` n2)) || ((p `path_contains` n2) && (path `path_contains` n1))))
+    then lca path p
+    else empty

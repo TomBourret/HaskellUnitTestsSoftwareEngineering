@@ -24,11 +24,18 @@ spec = do
     it "returns path1 for lca path1 path1" $ do
       (lca path1 path1) `shouldBe` path1
 
+  describe "path_length function" $ do
+
+    it "returns 0 for path_length empty" $ do
+      (path_length empty) `shouldBe` 0
+
     it "returns 5 for path_length path1" $ do
       (path_length path1) `shouldBe` 5
 
     it "returns 4 for path_length path2" $ do
       (path_length path2) `shouldBe` 4
+
+  describe "lca_graph function" $ do
 
     it "returns empty for lca_graph []" $ do
       (lca_graph [] 1 2) `shouldBe` empty
