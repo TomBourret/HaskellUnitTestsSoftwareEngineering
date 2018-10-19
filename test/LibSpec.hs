@@ -30,5 +30,14 @@ spec = do
     it "returns 4 for path_length path2" $ do
       (path_length path2) `shouldBe` 4
 
-    it "returns 0 for path_length empty" $ do
-      (path_length empty) `shouldBe` 0
+    it "returns empty for lca_graph []" $ do
+      (lca_graph [] 1 2) `shouldBe` empty
+
+    it "returns [3,1] for lca_graph graph 6 7" $ do
+      (lca_graph graph 6 7) `shouldBe` pathRes2
+
+    it "returns [1] for lca_graph graph 4 7" $ do
+      (lca_graph graph 4 7) `shouldBe` pathRes1
+
+    it "returns empty for lca_graph with unknown node" $ do
+      (lca_graph graph 2 100) `shouldBe` empty

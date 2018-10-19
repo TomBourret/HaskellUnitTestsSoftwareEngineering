@@ -1,5 +1,5 @@
 module Lib
-    ( someFunc, empty, Path, path1, path2, path3, pathRes1, pathRes2, path_length, path_contains, lca
+    ( someFunc, empty, Path, path1, path2, path3, graph, pathRes1, pathRes2, path_length, path_contains, lca, lca_graph
     ) where
 
 someFunc :: IO ()
@@ -18,6 +18,8 @@ empty = [] :# 0
 path1 = [8,5,4,2,1] :# 5
 path2 =   [9,6,3,1] :# 4
 path3 =   [8,7,3,1] :# 4
+
+graph = [path1, path2, path3]
 
 pathRes1 = [1] :# 1
 pathRes2 = [3,1] :# 2
@@ -40,3 +42,6 @@ lca (xs0 :# i) (ys0 :# j) = go k (drop (i-k) xs0) (drop (j-k) ys0) where
   go n xxs@(x:xs) (y:ys) 
     | x == y   = xxs :# n
     | otherwise = go (n - 1) xs ys
+
+lca_graph :: [Path] -> Int -> Int -> Path
+lca_graph [] _ _ = empty
